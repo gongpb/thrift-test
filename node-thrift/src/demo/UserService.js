@@ -399,12 +399,14 @@ com.funshion.thrift.UserServiceClient.prototype.add = function(user, callback) {
 
 com.funshion.thrift.UserServiceClient.prototype.send_add = function(user) {
   var output = new this.pClass(this.output);
+  console.log("\nstart to convert Method----");
   output.writeMessageBegin('add', Thrift.MessageType.CALL, this.seqid);
+  console.log("end to convert Method----\n");
   var args = new com.funshion.thrift.UserService_add_args();
-  console.log("111111111");
+  console.log("start to convert args----");
   args.user = user;
   args.write(output);
-  console.log("22222222");
+  console.log("end to convert args----\n");
   output.writeMessageEnd();
   return this.output.flush();
 };
