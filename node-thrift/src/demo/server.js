@@ -7,6 +7,10 @@ var UserStorage = require('./UserService.js'),
 
 var users = {};
 
+process.on('uncaughtException', function(err){
+	console.error('uncaughtException')
+})
+	
 console.log("numCPUs="+numCPUs);
 if (cluster.isMaster) {
     console.log('[master] ' + "start master...");
@@ -15,7 +19,7 @@ if (cluster.isMaster) {
          cluster.fork();
     }
 	cluster.on('death',  function(worker){
-	    logger.debug ('[master] ' + 'death: worker' + worker.id + ',pid:' + worker.process.pid);
+		console.error('[master] ' + 'death: worker' + worker.id + ',pid:' + worker.process.pid);
 	    cluster.fork();
 		}
 	);
@@ -57,7 +61,7 @@ if (cluster.isMaster) {
 		console.log("client is connected");
 	});
 	server.on("error",function(){
-		console.log(111111111111111111111111111111111111);
+		console.error("client contect is error");
 	});
 }
 
