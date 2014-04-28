@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.funshion.client.connect.ThriftConnect;
+import com.funshion.thrift.User;
 
 public class ThriftThread implements Runnable {
 	private static Logger logger = LoggerFactory.getLogger(ThriftThread.class);
@@ -32,10 +33,10 @@ public class ThriftThread implements Runnable {
 			for (int i = 0; i < requestNum; i++) {
 				client.addUser(i);
 //				client.addStr(requestNum);
-//				User u = client.getUser(1);
+				client.getUser(0);
 //				client.hello1();
 			}
-//		transport.close();
+		transport.close();
 		logger.info("threadID:" + threadId);
 		barrier.await();
 		} catch (Exception e) {

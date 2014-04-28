@@ -27,6 +27,7 @@ public class UserClient {
 			user.setAge(Short.valueOf("25"));
 			
 			String result = client.add(user);
+			System.out.println("addUser:uid="+req+" "+result);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -42,15 +43,15 @@ public class UserClient {
 		}
 	}
 
-	public User getUser(int userId) {
+	public void getUser(int userId) {
 		// 客户端调用接口
 		UserService.Client client = new UserService.Client(protocol);
 		try {
 			User user = client.get(userId);
+			System.out.println(user.getName());
 		} catch (TException e) {
 			e.printStackTrace();
 		}
-		return null;
 	}
 
 	public void hello1() {

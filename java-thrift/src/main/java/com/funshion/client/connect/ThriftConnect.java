@@ -6,7 +6,7 @@ import org.apache.thrift.transport.TTransportException;
 
 public class ThriftConnect {
 
-	public final static String THRIFT_HOST = "127.0.0.1";
+	public final static String THRIFT_HOST = "localhost";
 	public final static int THRIFT_POST = 9090;
 	private TTransport transport;
 
