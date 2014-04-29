@@ -11,16 +11,26 @@ var connection = thrift.createConnection('localhost', 9090, {
 	}),
     client = thrift.createClient(userService, connection);
 
-var user = new ttypes.User({uid: 1,name: "nodejs-thrift",age: 25,"desc":"node测试-thrift深究"});
 connection.on("connect", function(){
-	console.log("connect callback");
+	console.log("client is connectted");
 })
 connection.on('error', function(err) {
   console.error(err);
 });
 
+var user = new ttypes.User({uid: 1,name: "nodejs-thrift",age: 25,"desc":"node测试-thrift深究"});
+//--------------调用 thrift接口方法----------------
 client.add(user, function(err, response) {
-	console.log("stored:", response);
+	console.log("response-1:", response);
+});
+client.add(user, function(err, response) {
+	console.log("response-2:", response);
+});
+client.add(user, function(err, response) {
+	console.log("response-3:", response);
+});
+client.add(user, function(err, response) {
+	console.log("response-4:", response);
 });
 
 //client.get(1, function(err,responseUser) {

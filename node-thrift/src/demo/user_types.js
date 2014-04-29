@@ -89,25 +89,25 @@ com.funshion.thrift.User.prototype.read = function(input) {
 com.funshion.thrift.User.prototype.write = function(output) {
   output.writeStructBegin('User');
   if (this.uid !== null && this.uid !== undefined) {
-	  console.log("uid="+this.uid);
+	 // console.log("uid="+this.uid);
     output.writeFieldBegin('uid', Thrift.Type.I32, 1);
     output.writeI32(this.uid);
     output.writeFieldEnd();
   }
   if (this.name !== null && this.name !== undefined) {
-	  console.log("name="+this.name);
+	//  console.log("name="+this.name);
     output.writeFieldBegin('name', Thrift.Type.STRING, 2);
     output.writeString(this.name);
     output.writeFieldEnd();
   }
   if (this.age !== null && this.age !== undefined) {
-	  console.log("age="+this.age);
+	//  console.log("age="+this.age);
     output.writeFieldBegin('age', Thrift.Type.I16, 3);
     output.writeI16(this.age);
     output.writeFieldEnd();
   }
   if (this.desc !== null && this.desc !== undefined) {
-	  console.log("desc="+this.desc);
+	 // console.log("desc="+this.desc);
     output.writeFieldBegin('desc', Thrift.Type.STRING, 4);
     output.writeString(this.desc);
     output.writeFieldEnd();

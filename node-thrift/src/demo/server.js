@@ -2,7 +2,7 @@ var cluster = require('cluster');
 var numCPUs = require('os').cpus().length;
 
 var thrift = require('thrift');
-var UserStorage = require('./UserService.js'), 
+var userService = require('./UserService.js'), 
 	ttypes = require('./user_types');
 
 var users = {};
@@ -14,7 +14,6 @@ process.on('uncaughtException', function(err){
 console.log("numCPUs="+numCPUs);
 if (cluster.isMaster) {
     console.log('[master] ' + "start master...");
-
     for (var i = 0; i < numCPUs; i++) {
          cluster.fork();
     }
@@ -26,11 +25,11 @@ if (cluster.isMaster) {
     cluster.on('listening', function (worker, address) {
         console.log('[master] ' + 'listening: worker' + worker.id + ',pid:' + worker.process.pid + ', Address:' + address.address + ":" + address.port);
     });
-
 } else if (cluster.isWorker) {
 	 console.log('[worker] ' + "start worker ..." + cluster.worker.id);
-	var server = thrift.createServer(UserStorage, {
+	var server = thrift.createServer(userService, {
 		add : function(user, success) {
+			console.log("-------call add ------");
 			if (!users[user.uid]) {
 				console.log("stored:", user.uid);
 				users[user.uid] = user;
