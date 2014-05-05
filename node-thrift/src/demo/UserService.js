@@ -596,4 +596,3 @@ com.funshion.thrift.UserServiceProcessor.prototype.process_hello1 = function(seq
     output.flush();
   })
 }
-

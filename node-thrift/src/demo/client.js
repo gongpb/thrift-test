@@ -2,7 +2,7 @@ var thrift = require('thrift');
 var userService = require('./UserService.js'),
     ttypes = require('./user_types');
 
-transport = thrift.TBufferedTransport();
+transport = thrift.TBufferedTransport;
 protocol = thrift.TBinaryProtocol();
 
 var connection = thrift.createConnection('localhost', 9090, {
@@ -30,7 +30,7 @@ client.add(user, function(err, response) {
 	console.log("response-3:", response);
 });
 client.add(user, function(err, response) {
-	console.log("response-4:", response);
+    console.log("response-4:", response);
 });
 
 //client.get(1, function(err,responseUser) {
