@@ -2,6 +2,8 @@ var thrift = require('thrift');
 var userService = require('./UserService.js'),
     ttypes = require('./user_types');
 
+var	transport = thrift.TFramedTransport;
+	
 var users = {};
 
 servicesMethods = {
@@ -32,10 +34,8 @@ servicesMethods = {
 }
 
 var startWorker = exports.startWorker = function (){
-    transport = thrift.TBufferedTransport;
-    console.log("================="+transport);
-    var server = thrift.createServer(userService, servicesMethods,
-                                    {transport : transport});
+        
+    var server = thrift.createServer(userService, servicesMethods);
 
     server.listen(9090);
     server.on("connect", function(error){

@@ -3,7 +3,7 @@
 //
 // DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
 //
-var Thrift = require('thrift').Thrift;
+var Thrift = require('thrift-me').Thrift;
 
 var ttypes = require('./user_types');
 //HELPER FUNCTIONS AND STRUCTURES

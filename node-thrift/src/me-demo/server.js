@@ -18,6 +18,7 @@ if (cluster.isMaster) {
 	    cluster.fork();
 		}
 	);
+		
     cluster.on('listening', function (worker, address) {
         console.log('[master] ' + 'listening: worker' + worker.id + ',pid:' + worker.process.pid + ', Address:' + address.address + ":" + address.port);
     });

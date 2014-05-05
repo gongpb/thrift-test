@@ -1,4 +1,4 @@
-var thrift = require('thrift');
+var thrift = require('thrift-me');
 var userService = require('./UserService.js'),
     ttypes = require('./user_types');
 

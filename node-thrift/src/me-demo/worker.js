@@ -31,20 +31,16 @@ servicesMethods = {
     }
 }
 
-var startWorker = exports.startWorker = function (){
+exports.startWorker = function (){
 
-    console.log("111111111111="+thrift);
-    transport = thrift.TBufferedTransport;
-    console.log("================="+transport);
-//    var server = thrift.createServer(userService, servicesMethods,
-//                                    {transport : transport});
-//
-//    server.listen(9090);
-//    server.on("connect", function(error){
-//        console.log("client is connected");
-//    });
-//    server.on("error",function(){
-//        console.error("client contect is error");
-//    });
+   var server = thrift.createServer(userService, servicesMethods);
+
+   server.listen(9090);
+   server.on("connect", function(error){
+       console.log("client is connected");
+   });
+   server.on("error",function(){
+       console.error("client contect is error");
+   });
 
 }
