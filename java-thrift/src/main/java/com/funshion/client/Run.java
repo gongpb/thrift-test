@@ -6,6 +6,6 @@ package com.funshion.client;
 public class Run {
 	public static void main(String[] args) {
 		ThreadService ts = new ThreadService();
-		ts.start(200,50);
+		ts.start(2, 3);
 	}
 }

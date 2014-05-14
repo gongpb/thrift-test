@@ -31,10 +31,10 @@ public class ThriftThread implements Runnable {
 		UserClient client = new UserClient(protocol);
 		try {
 			for (int i = 0; i < requestNum; i++) {
-				client.addUser(i);
-//				client.addStr(requestNum);
-				client.getUser(0);
-//				client.hello1();
+//				client.addUser(i);
+////				client.addStr(requestNum);
+//				client.getUser(0);
+				client.hello1();
 			}
 		transport.close();
 		logger.info("threadID:" + threadId);
