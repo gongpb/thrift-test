@@ -7,7 +7,7 @@ import org.apache.thrift.transport.TTransportException;
 public class ThriftConnect {
 
 	public final static String THRIFT_HOST = "192.168.207.128";
-	public final static int THRIFT_POST = 8000;
+	public final static int THRIFT_POST = 9090;
 	private TTransport transport;
 
 	public TTransport connect() {
