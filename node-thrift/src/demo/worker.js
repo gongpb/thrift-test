@@ -4,11 +4,11 @@ var userService = require('./UserService.js'),
 
 var	transport = thrift.TFramedTransport;
 	
-var users = {};
+// var users = {};
 
 servicesMethods = {
     add : function(user, success) {
-        console.log("-------call add ------");
+		console.log("-----------call  add---------");
         if (!users[user.uid]) {
             console.log("stored:", user.uid);
             users[user.uid] = user;
@@ -29,13 +29,14 @@ servicesMethods = {
         }
     },
     hello1: function(success) {
+		console.log("111111111111111111")
         success(null, "OK-------");
     }
 }
 
 var startWorker = exports.startWorker = function (){
         
-    var server = thrift.createServer(userService, servicesMethods);
+    var server = thrift.createServer(userService, servicesMethods,{transport:transport});
 
     server.listen(9090);
     server.on("connect", function(error){

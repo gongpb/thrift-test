@@ -1,6 +1,7 @@
 var cluster = require('cluster');
 var numCPUs = require('os').cpus().length;
 
+global.users  = {};
 var worker = require('./worker');
 
 process.on('uncaughtException', function(err){

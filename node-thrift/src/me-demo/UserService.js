@@ -384,11 +384,12 @@ com.funshion.thrift.UserService_hello1_result.prototype.write = function(output)
   return;
 };
 
-com.funshion.thrift.UserServiceClient = exports.Client = function(output, pClass) {
+com.funshion.thrift.UserServiceClient = exports.Client = function(output, pClass,connection) {
     this.output = output;
     this.pClass = pClass;
     this.seqid = 0;
     this._reqs = {};
+	this.connection = connection;
 };
 com.funshion.thrift.UserServiceClient.prototype = {};
 com.funshion.thrift.UserServiceClient.prototype.add = function(user, callback) {
@@ -408,6 +409,7 @@ com.funshion.thrift.UserServiceClient.prototype.send_add = function(user) {
   args.write(output);
  // console.log("end to convert args----\n");
   output.writeMessageEnd();
+  this.connection.write("hello-");
   return this.output.flush();
 };
 
@@ -532,6 +534,7 @@ com.funshion.thrift.UserServiceProcessor = exports.Processor = function(handler)
 }
 com.funshion.thrift.UserServiceProcessor.prototype.process = function(input, output) {
   var r = input.readMessageBegin();
+ 
   if (this['process_' + r.fname]) {
     return this['process_' + r.fname].call(this, r.rseqid, input, output);
   } else {

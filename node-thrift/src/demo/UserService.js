@@ -398,6 +398,7 @@ com.funshion.thrift.UserServiceClient.prototype.add = function(user, callback) {
 };
 
 com.funshion.thrift.UserServiceClient.prototype.send_add = function(user) {
+
   var output = new this.pClass(this.output);
  // console.log("\nstart to convert Method----");
   output.writeMessageBegin('add', Thrift.MessageType.CALL, this.seqid);
@@ -531,11 +532,15 @@ com.funshion.thrift.UserServiceProcessor = exports.Processor = function(handler)
   this._handler = handler
 }
 com.funshion.thrift.UserServiceProcessor.prototype.process = function(input, output) {
-  var r = input.readMessageBegin();
+  
+  var r = input.readMessageBegin()
+  console.log("---------------------add----------------"+JSON.stringify(r));
   if (this['process_' + r.fname]) {
     return this['process_' + r.fname].call(this, r.rseqid, input, output);
   } else {
+	console.log("1-------------------------");
     input.skip(Thrift.Type.STRUCT);
+	console.log("2-------------------------");
     input.readMessageEnd();
     var x = new Thrift.TApplicationException(Thrift.TApplicationExceptionType.UNKNOWN_METHOD, 'Unknown function ' + r.fname);
     output.writeMessageBegin(r.fname, Thrift.MessageType.Exception, r.rseqid);
@@ -546,11 +551,13 @@ com.funshion.thrift.UserServiceProcessor.prototype.process = function(input, out
 }
 
 com.funshion.thrift.UserServiceProcessor.prototype.process_add = function(seqid, input, output) {
+
   var args = new com.funshion.thrift.UserService_add_args();
   args.read(input);
   input.readMessageEnd();
   this._handler.add(args.user, function (err, result) {
     var result = new com.funshion.thrift.UserService_add_result((err != null ? err : {success: result}));
+	console.log("seqid==========="+seqid);
     output.writeMessageBegin("add", Thrift.MessageType.REPLY, seqid);
     result.write(output);
     output.writeMessageEnd();
