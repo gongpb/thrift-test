@@ -33,16 +33,6 @@ public class UserClient {
 		}
 	}
 
-	public void addStr(int req) {
-		try {
-			// 客户端调用接口
-			UserService.Client client = new UserService.Client(protocol);
-			String result = client.addStr("{'uid':1,'name':'test','age':25,'desc':'abcdssssssssssssssssssdddddddddddddfffffff'}");
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-	}
-
 	public void getUser(int userId) {
 		// 客户端调用接口
 		UserService.Client client = new UserService.Client(protocol);

@@ -1,7 +1,7 @@
 var thrift = require('thrift');
-var userService = require('./UserService.js'),
-    ttypes = require('./user_types');
-
+var userService = require('./gen-nodejs/UserService.js'),
+    ttypes = require('./gen-nodejs/user_types');
+// TBufferedTransport
 var transport = thrift.TFramedTransport;
 var protocol = thrift.TBinaryProtocol;
 

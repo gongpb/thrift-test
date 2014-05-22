@@ -9,7 +9,6 @@ struct User {
 
 service UserService {
   string add(1: User user),
-  string addStr(1: string user),
   User get(1: i32 uid),
   void hello1()
 }

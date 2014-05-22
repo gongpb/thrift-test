@@ -1,7 +1,7 @@
 var thrift = require('thrift');
-var userService = require('./UserService.js'),
-    ttypes = require('./user_types');
-
+var userService = require('./gen-nodejs/UserService.js'),
+    ttypes = require('./gen-nodejs/user_types');
+// TBufferedTransport
 var	transport = thrift.TFramedTransport;
 	
 // var users = {};
@@ -16,9 +16,6 @@ servicesMethods = {
         } else {
             success(null, "error , 该用户已经存在");
         }
-    },
-    addStr: function(user, success) {
-        success(null, "ok");
     },
     get : function(uid, success) {
         console.log("retrieved:", uid);
